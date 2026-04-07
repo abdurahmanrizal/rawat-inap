@@ -8,6 +8,7 @@ export default {
       },
       colors: {
         primary: '#4f8800',
+        danger: '#dc2626',
       },
     },
   },

@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -7,6 +6,7 @@ import {
 } from "@/features/patients/schemas/patientSchema";
 import { Input } from "@/components/common/Input";
 import { Button } from "@/components/common/Button";
+import { Field } from "@/components/common/Field";
 
 interface PatientFormProps {
   onSubmit: (values: PatientSchemaValues) => Promise<void>;
@@ -95,21 +95,5 @@ export function PatientForm({ onSubmit, isSubmitting }: PatientFormProps) {
         </Button>
       </div>
     </form>
-  );
-}
-
-interface FieldProps {
-  label: string;
-  error?: string;
-  children: ReactNode;
-}
-
-function Field({ label, error, children }: FieldProps) {
-  return (
-    <label className="block space-y-2">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
-      {children}
-      {error ? <span className="text-xs text-rose-500">{error}</span> : null}
-    </label>
   );
 }

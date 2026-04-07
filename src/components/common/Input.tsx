@@ -18,10 +18,17 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
   endIcon?: ReactNode;
   onEndIconClick?: () => void;
+  error?: boolean;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ icon, endIcon, onEndIconClick, className, ...props }, ref) => {
-  const inputClasses = `${inputClassName}${icon ? ` ${inputWithIconClassName}` : ''}${endIcon ? ` ${inputWithEndIconClassName}` : ''}${className ? ` ${className}` : ''}`;
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ icon, endIcon, onEndIconClick, error, className, ...props }, ref) => {
+  const borderClass = error ? 'border-danger' : 'border-slate-200';
+  const focusRingClass = error ? 'focus:ring-danger/10' : 'focus:ring-slate-100';
+  const focusBorderClass = error ? 'focus:border-danger' : 'focus:border-slate-400';
+  const inputClasses = `${inputClassName}${icon ? ` ${inputWithIconClassName}` : ''}${endIcon ? ` ${inputWithEndIconClassName}` : ''}${className ? ` ${className}` : ''}`
+    .replace('border-slate-200', borderClass)
+    .replace('focus:border-slate-400', focusBorderClass)
+    .replace('focus:ring-slate-100', focusRingClass);
 
   if (icon || endIcon) {
     return (
