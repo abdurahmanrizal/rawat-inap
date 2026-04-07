@@ -62,7 +62,11 @@ export function PatientForm({ onSubmit, isSubmitting }: PatientFormProps) {
         </Field>
 
         <Field label="Tanggal Masuk" error={errors.admissionDate?.message}>
-          <Input {...register("admissionDate")} type="date" />
+          <Input
+            {...register("admissionDate")}
+            type="date"
+            // max={new Date().toISOString().split("T")[0]}
+          />
         </Field>
 
         <Field label="Dokter Penanggung Jawab" error={errors.doctor?.message}>
